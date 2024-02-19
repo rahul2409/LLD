@@ -4,37 +4,32 @@ import lld.practise.book.model.Book;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class BookStoreRepositoryImpl implements BookStoreRepository{
     private Map<Book, Integer> booksToBeStored = new HashMap<>();
 
     @Override
     public Book addNewBook(Book book) {
-        Book newBook = searchBook(book.getTitle());
-
-        if(newBook == null){
-            newBook = book;
-            booksToBeStored.put(newBook, 1);
-            return newBook;
+        Optional<Book> newBook = searchBook(book.getTitle());
+        if(newBook.isEmpty()){
+            booksToBeStored.put(book, 1);
+            return book;
         } else{
-            booksToBeStored.put(newBook, booksToBeStored.get(newBook)+1);
-            return newBook;
+            booksToBeStored.put(newBook.get(), booksToBeStored.get(newBook.get())+1);
+            return newBook.get();
         }
-
-
     }
 
+    // Author name, Title, ISBN
     @Override
-    public Book searchBook(String query) {
+    public Optional<Book> searchBook(String query) {
         for(Book b: booksToBeStored.keySet()){
-            if(b.getTitle().equals(query)){
-                return b;
-            }
-            else {
-                return null;
+            if(b.getTitle().equals(query) || b.getISBN().equals(query) || b.getAuthor().equals(query)){
+                return Optional.of(b);
             }
         }
-        return null;
+        return Optional.empty();
     }
 
     @Override

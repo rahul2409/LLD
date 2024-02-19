@@ -1,7 +1,7 @@
 package lld.practise.hotelBooking;
 
 /*
-* Design a logic for fetching all the rooms and the list of hotel
+* Design a logic for fetching all the rooms
 * User input startDate, endDate, roomType
 * User output list of rooms based on type for different hotels.
 * */

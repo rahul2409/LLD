@@ -29,6 +29,7 @@ public class Main {
         Main main = new Main();
         FlightTicketPriceCalculator flightTicketPriceCalculator = new FlightTicketPriceCalculator();
 
+        // Can handle using exception.
         // Create a ticket input.
         Ticket ticket = new Ticket(Airport.JAMMU, Airport.GOA);
         System.out.println("Do you want connecting flight? Type yes");
